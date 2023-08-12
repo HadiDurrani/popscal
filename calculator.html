@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Calculator</title>
+</head>
+<body>
+    <form id="timeConverterForm">
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" name="hours" min="0" required>
+        
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="59" required>
+
+        <label for="units">Units:</label>
+        <input type="number" id="units" name="units" required>
+        
+        <button type="button" id="convertButton">Convert</button>
+    </form>
+    
+    <p id="result"></p>
+    <p id="result2"></p>
+
+    <script>
+        const convertButton = document.getElementById("convertButton");
+        const resultElement = document.getElementById("result");
+        const result2Element = document.getElementById("result2");
+
+        convertButton.addEventListener("click", function() {
+            const hours = parseInt(document.getElementById("hours").value);
+            const minutes = parseInt(document.getElementById("minutes").value);
+            const units = parseFloat(document.getElementById("units").value);
+
+            if (isNaN(hours) || isNaN(minutes) || isNaN(units)) {
+                resultElement.innerText = "Please enter valid numbers for hours, minutes, and units.";
+            } else {
+                const totalMinutes = hours * 60 + minutes;
+                resultElement.innerText = `${hours} hours and ${minutes} minutes is equivalent to ${totalMinutes} minutes.`;
+                const finresult = units / (totalMinutes / 60);
+                result2Element.innerText = `${units} in ${hours} hours and ${minutes} minutes is equivalent to ${finresult.toFixed(7)} units per hour.`;
+            }
+        });
+    </script>
+</body>
+</html>
